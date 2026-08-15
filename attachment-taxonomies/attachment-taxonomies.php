@@ -9,20 +9,22 @@
  * Plugin Name: Attachment Taxonomies
  * Plugin URI: https://wordpress.org/plugins/attachment-taxonomies/
  * Description: This plugin adds categories and tags to the WordPress media library - lightweight and developer-friendly.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Requires at least: 6.1
- * Requires PHP: 7.0
+ * Requires PHP: 7.4
  * Author: Felix Arntz
  * Author URI: https://felix-arntz.me
- * License: GNU General Public License v3 (or later)
+ * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: attachment-taxonomies
- * Tags: attachment, media, taxonomy, categories, tags
+ * Tags: attachment, media, categories, tags, taxonomies
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+define( 'ATTACHMENT_TAXONOMIES_VERSION', '1.2.2' );
 
 /**
  * Initializes the plugin and contains API methods.
@@ -36,7 +38,7 @@ final class Attachment_Taxonomies {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const VERSION = '1.2.1';
+	const VERSION = ATTACHMENT_TAXONOMIES_VERSION;
 
 	/**
 	 * The Singleton instance.
@@ -93,6 +95,7 @@ final class Attachment_Taxonomies {
 		if ( file_exists( __DIR__ . '/inc/Attachment_Taxonomies_Plugin_Env.php' ) ) {
 			require_once __DIR__ . '/inc/Attachment_Taxonomies_Plugin_Env.php';
 		} else {
+			// @phpstan-ignore-next-line
 			require_once __DIR__ . '/attachment-taxonomies/inc/Attachment_Taxonomies_Plugin_Env.php';
 		}
 
